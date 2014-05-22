@@ -1,0 +1,70 @@
+int RGBr = 3;
+int RGBg = 5;
+int RGBb = 6;
+int RGBr2 = 0;
+int RGBg2 = 1;
+int RGBb2 = 2;
+int RGBr_G = 3;
+int RGBg_G = 4;
+int RGBb_G = 5;
+int Ran1, Ran2, Ran3;
+
+int difficulty = 10;
+
+
+void setup(){
+ pinMode(RGBr, OUTPUT); 
+ pinMode(RGBg, OUTPUT);
+ pinMode(RGBb, OUTPUT);
+ pinMode(RGBr2, INPUT);
+ pinMode(RGBg2, INPUT);
+ pinMode(RGBb2, INPUT);
+ pinMode(RGBr_G, INPUT);
+ pinMode(RGBg_G, INPUT);
+ pinMode(RGBb_G, INPUT);
+ pinMode(12, OUTPUT);
+ pinMode(13, OUTPUT);
+ 
+ randomSeed(analogRead(5)); 
+ 
+ Serial.begin(9600);
+ Ran1 = random(255);
+ Ran2 = random(255);
+ Ran3 = random(255);
+  analogWrite(RGBr, Ran1);
+ analogWrite(RGBg, Ran2);
+ analogWrite(RGBb, Ran3);
+ 
+} 
+
+void loop (){
+ int a, b, c, x, y, z;
+ a = analogRead(0);
+ b = analogRead(1);
+ c = analogRead(2);
+ 
+ x = analogRead(3);
+ y = analogRead(4);
+ z = analogRead(5);
+ 
+ if (abs(a-x) < difficulty && abs(b-y) < difficulty && abs(c-z) < difficulty){
+   digitalWrite(12, HIGH);
+   digitalWrite(13, LOW);
+   delay(5000);
+   
+   
+ }
+ 
+ else{
+   digitalWrite(12, LOW);
+   digitalWrite(13, HIGH);
+   
+   
+ }
+ 
+ 
+ Serial.println(analogRead(3));
+ Serial.println(analogRead(4));
+ Serial.println(analogRead(5));
+ Serial.println(" ");
+}
